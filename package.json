@@ -16,7 +16,8 @@
   "scripts": {
     "start": "node index.js",
     "build": "cd client && yarn build",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "prebuild": "cd client && yarn install"
   },
   "author": "",
   "license": "ISC",
