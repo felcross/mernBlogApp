@@ -14,7 +14,10 @@ dotenv.config();
 app.use(express.json());
 app.use(cors())
 app.use("/images", express.static(path.join(__dirname, "/images")));
-
+app.use( express.static(path.join(__dirname, "/client/build")));
+app.get('/',(req,res)=>{
+  res.sendFile(path.join(__dirname, "/client/build/index.html"))
+})
 mongoose.connect(process.env.MONGOL_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -43,6 +46,6 @@ app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/categories", categoryRoute);
 
-app.listen("5009", () => {
+app.listen(process.env.PORT, () => {
   console.log("Backend is running.");
 });
