@@ -18,14 +18,31 @@ app.use( express.static(path.join(__dirname, "/client/build")));
 app.get('/',(req,res)=>{
   res.sendFile(path.join(__dirname, "/client/build/index.html"))
 })
-mongoose.connect(process.env.MONGOL_URL, {
+app.use((req,res,next)=>{
+  console.log('passei aqui')
+  mongoose.connect(process.env.MONGOL_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify:true
+  })
+  .then(()=>{
+    console.log("running mongoldb")
+    next()
+  })
+  .catch((err) => {
+    console.log(err)
+    next(err)
+  });
+})
+/*mongoose.connect(process.env.MONGOL_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify:true
   })
   .then(console.log("Connected to MongoDB"))
-  .catch((err) => console.log(err));
+  .catch((err) => console.log(err));*/
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

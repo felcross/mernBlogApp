@@ -21,6 +21,7 @@ export default function Register() {
       });
       res.data && window.location.replace("/login");
     } catch (err) {
+      console.log(err)
       setError(true);
     }
   };
