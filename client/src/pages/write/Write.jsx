@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useHistory } from "react";
 import "./write.css";
 
 import api from '../../utils/api'
@@ -9,6 +9,7 @@ export default function Write() {
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
   const { user } = useContext(Context);
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,7 +30,7 @@ export default function Write() {
     }
     try {
       const res = await api.post("/posts", newPost);
-      window.location.replace("/post/" + res.data._id);
+        history.push("/post/" + res.data._id);
     } catch (err) {}
   };
   return (
