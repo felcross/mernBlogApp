@@ -1,7 +1,7 @@
 import api from '../../utils/api'
-import { useContext, useEffect, useState, useHistory } from "react";
+import { useContext, useEffect, useState} from "react";
 import { useLocation } from "react-router";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import { Context } from "../../context/Context";
 import "./singlePost.css";
 
@@ -9,7 +9,7 @@ export default function SinglePost() {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
   const [post, setPost] = useState({});
-  const PF = `${process.env.REACT_APP_API}/images`;
+  const PF = `${process.env.REACT_APP_API}/images/`;
   const { user } = useContext(Context);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");

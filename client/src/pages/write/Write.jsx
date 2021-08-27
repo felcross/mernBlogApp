@@ -1,4 +1,6 @@
-import { useContext, useState, useHistory } from "react";
+import { useContext, useState} from "react";
+import  {useHistory}  from "react-router-dom";
+
 import "./write.css";
 
 import api from '../../utils/api'
@@ -25,13 +27,13 @@ export default function Write() {
       data.append("file", file);
       newPost.photo = filename;
       try {
-        await api.post("/upload", data);
-      } catch (err) {}
+        await api.post("/upload/", data);
+      } catch (err) {console.log(err)}
     }
     try {
       const res = await api.post("/posts", newPost);
         history.push("/post/" + res.data._id);
-    } catch (err) {}
+    } catch (err) {console.log(err)}
   };
   return (
     <div className="write">
