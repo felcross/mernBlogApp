@@ -27,7 +27,7 @@ export default function Write() {
       data.append("file", file);
       newPost.photo = filename;
       try {
-        await api.post("/upload/", data);
+        await api.post("/upload", data);
       } catch (err) {console.log(err)}
     }
     try {
